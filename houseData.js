@@ -1,6 +1,6 @@
 module.exports = 
 [ { 
-  id:1,
+  id:1912,
   images: 
      [ 'http://jiazaishanghai.com/UpLoads/2015-11-10/17d6f1e6-80ba-4e2c-9661-ff023afa12e2.jpg',
        'http://jiazaishanghai.com/UpLoads/2015-11-10/17d6f1e6-80ba-4e2c-9661-ff023afa12e2.jpg',
@@ -36,4 +36,44 @@ module.exports =
     sqm: '70平米',
     beds: '1',
     baths: '1',
-    description: '1、地段：天平路淮海中路； 2、面积：70平米左右； 3、户型：总高三楼的双开间新里，本案是2楼整层，1房2厅1卫格局，豪华装修，老外刚刚退租 4、楼层：2/3； 5、朝向：双南户型； 6、最低价格：11500元/月。 不要总打电话进来，看房子提前半天电话约，基本上都方便。请看清楚再打电话。' } ]
+    description: '1、地段：天平路淮海中路； 2、面积：70平米左右； 3、户型：总高三楼的双开间新里，本案是2楼整层，1房2厅1卫格局，豪华装修，老外刚刚退租 4、楼层：2/3； 5、朝向：双南户型； 6、最低价格：11500元/月。 不要总打电话进来，看房子提前半天电话约，基本上都方便。请看清楚再打电话。' 
+  },
+{ 
+  id:1913,
+  images: 
+     [ 'http://jiazaishanghai.com/UpLoads/2015-11-10/17d6f1e6-80ba-4e2c-9661-ff023afa12e2.jpg',
+       'http://jiazaishanghai.com/UpLoads/2015-11-10/17d6f1e6-80ba-4e2c-9661-ff023afa12e2.jpg',
+       'http://jiazaishanghai.com/UpLoads/2015-11-10/7f07af09-dbdc-422e-9cf5-6c5f9d1330d7.jpg',
+       'http://jiazaishanghai.com/UpLoads/2015-11-10/11f75633-dd53-495a-94fc-f03196c8bb3f.jpg',
+       'http://jiazaishanghai.com/UpLoads/2015-11-10/63fe7bd8-17d0-4f21-b192-3c6f9cc2afba.jpg',
+       'http://jiazaishanghai.com/UpLoads/2015-11-10/088426d7-a9ab-49ed-aece-3ecdde593e81.jpg',
+       'http://jiazaishanghai.com/UpLoads/2015-11-10/68dcac49-feba-40dd-a6d9-ccd4f497aac3.jpg',
+       'http://jiazaishanghai.com/UpLoads/2015-11-10/64f03ff3-8fa9-45f1-9ddc-ee55fb508f51.jpg',
+       'http://jiazaishanghai.com/UpLoads/2015-11-10/128b3d55-0a56-400e-8be7-376a84b595b5.jpg',
+       'http://jiazaishanghai.com/UpLoads/2015-11-10/75f06cc5-9742-4d70-9f0b-fc26c705f6a2.jpg',
+       'http://jiazaishanghai.com/UpLoads/2015-11-10/ede68aa2-9d3c-42fe-a6a2-7d784f33a27c.jpg',
+       'http://jiazaishanghai.com/UpLoads/2015-11-10/17d6f1e6-80ba-4e2c-9661-ff023afa12e2.jpg',
+       'http://jiazaishanghai.com/UpLoads/2015-11-10/7f07af09-dbdc-422e-9cf5-6c5f9d1330d7.jpg',
+       'http://jiazaishanghai.com/UpLoads/2015-11-10/11f75633-dd53-495a-94fc-f03196c8bb3f.jpg',
+       'http://jiazaishanghai.com/UpLoads/2015-11-10/63fe7bd8-17d0-4f21-b192-3c6f9cc2afba.jpg',
+       'http://jiazaishanghai.com/UpLoads/2015-11-10/088426d7-a9ab-49ed-aece-3ecdde593e81.jpg',
+       'http://jiazaishanghai.com/UpLoads/2015-11-10/68dcac49-feba-40dd-a6d9-ccd4f497aac3.jpg',
+       'http://jiazaishanghai.com/UpLoads/2015-11-10/64f03ff3-8fa9-45f1-9ddc-ee55fb508f51.jpg',
+       'http://jiazaishanghai.com/UpLoads/2015-11-10/128b3d55-0a56-400e-8be7-376a84b595b5.jpg',
+       'http://jiazaishanghai.com/UpLoads/2015-11-10/75f06cc5-9742-4d70-9f0b-fc26c705f6a2.jpg',
+       'http://jiazaishanghai.com/UpLoads/2015-11-10/ede68aa2-9d3c-42fe-a6a2-7d784f33a27c.jpg',
+       'http://jiazaishanghai.com/UpLoads/2015-09-06/0b625626-63f6-4b94-9041-53ae363d7d79.jpg',
+       'http://jiazaishanghai.com/UpLoads/2016-06-18/75e29fdc98c345bb9eb2a0cc69e3baed.jpeg',
+       'http://jiazaishanghai.com/UpLoads/2015-08-16/e0eb6e53-2320-4d27-a92a-5c4acd38032dw.jpg',
+       'http://jiazaishanghai.com/uploads/2017/06/c491e423b62f4c06bea6317ac051647d.jpg',
+       'http://jiazaishanghai.com/UpLoads/2015-11-10/17d6f1e6-80ba-4e2c-9661-ff023afa12e2.jpg' ],
+    rent: '11500元 / 月',
+    agent: { name: 'sdfasdf', phone: 'sadfsadf' },
+    address: '天平路47弄3号2楼',
+    district: '徐汇-法租界',
+    city: '上海市, 20001',
+    sqm: '70平米',
+    beds: '1',
+    baths: '1',
+    description: '1、地段：天平路淮海中路； 2、面积：70平米左右； 3、户型：总高三楼的双开间新里，本案是2楼整层，1房2厅1卫格局，豪华装修，老外刚刚退租 4、楼层：2/3； 5、朝向：双南户型； 6、最低价格：11500元/月。 不要总打电话进来，看房子提前半天电话约，基本上都方便。请看清楚再打电话。' 
+  } ]
