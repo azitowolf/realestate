@@ -1,0 +1,181 @@
+/* Base Application Styles */
+
+body, html {
+  height: 100%;
+  width: 100%;
+  color: #222;
+  font-family: Helvetica, sans-serif;
+  font-size: 14px;
+}
+
+h1 {
+  font-size: 2em;
+  // font-family: 'Arial Narrow Bold';
+  margin: 0px;
+}
+
+h2 {
+  font-size: 1.5em;
+  // font-family: 'Arial Narrow Bold';
+  margin: 0px;
+}
+
+.button {
+  display: inline-block;
+  color: #fff;  
+  background-color: #06BEBD;
+  padding: 0.5em 1em;
+  border-radius: 1em;
+  cursor: pointer;
+}
+
+/* Icon Styles */
+
+.icon {
+  &.icon-user {
+    &::after {
+      content: "";
+      background: url("../images/user-icon.svg");
+      background-size: cover;
+      position: absolute;
+      top:0;
+      left:0;
+      width:100%;
+      height:100%;
+    }
+
+  }
+}
+
+.section {
+  box-sizing: border-box;
+  width: 100%;
+  padding: 2em;
+}
+
+.content-wrapper {
+  max-width:750px;
+  margin: 0px auto;
+  background: #fff;
+}
+
+/* Section Styles */
+
+.primary-info-section{
+  color:white;
+  background-color: #2C3239;
+  padding:2em;
+  div{
+    margin-top:0.5em;
+  }
+  .rent {
+    margin-top:1.5em;
+    color: #06BEBD;
+  }
+}
+
+.description-section {
+  margin-top: 2em;
+}
+
+.detailed-info-section {
+  display: flex;
+  flex-direction: column;
+  .info-columns {
+    display: flex;
+    flex-direction: row; 
+    .column {
+      margin-right:1em;
+    }  
+  }
+}
+
+.agent-section {
+  background: #D8D8D8;
+  display:flex;
+  flex-direction: row;
+  .column-left {
+    width: 30%;
+  }
+  .column-right {
+    width: 70%;
+  }
+  .agent-icon{
+    position: relative;
+    &:after {
+      height:30px;
+      width:30px;
+      left:calc(50% - 15px);
+      top: calc(50% + 15px);
+    }
+  }
+  .agent-button {
+    margin-top:1em;
+  }
+}  
+
+.beds, .baths {
+  display: inline-block;
+}
+
+//SLIDER
+
+.slick-slide {
+  min-height: 500px;
+}
+
+.slick-dots {
+  position: absolute;
+  bottom: 0px;
+  left: 30%;
+  list-style: none;
+  li {
+    display: inline-block;
+    &.slick-active{
+      button:before {
+        opacity: 1;
+      }
+    }      
+  }
+
+}
+
+.slick-dots li button:before {
+    position: absolute;
+    top: 0;
+    left: 0;
+    content: "•";
+    width: 30px;
+    height: 30px;
+    font-size: 24px;
+    line-height: 20px;
+    text-align: center;
+    color: white;
+    opacity: 0.5;
+}
+
+.slick-dots li button {
+    position: relative;
+    border: 0;
+    background: 0 0;
+    display: block;
+    height: 20px;
+    width: 20px;
+    outline: 0;
+    line-height: 0;
+    font-size: 0;
+    color: transparent;
+    padding: 5px;
+    cursor: pointer;
+}
+
+
+.fp-image-slider {
+  height: 100%;
+  width: 100%;
+
+  .slick-slide {
+    height: 600px;
+  }
+}
+
