@@ -68,6 +68,8 @@
     "react": "^15.0.0",
     "react-dom": "^15.0.0",
     "react-image-slider": "^0.1.0",
+    "react-router": "^4.1.2",
+    "react-router-dom": "^4.1.2",
     "react-slick": "^0.14.11",
     "underscore": "^1.8.3"
   }
