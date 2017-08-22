@@ -6,7 +6,7 @@ import _ from 'underscore';
 import React from 'react';
 import ImageSlider from './Slider';
 
-let listingData = require('./../../detailedListingData');
+let listingData = require('./../../listings-1500-1546');
 
 const ListingPageComponent = (props) => {
         const listingID = parseInt(props.match.params.id);
@@ -68,7 +68,7 @@ const ListingPageComponent = (props) => {
             </div>
             </div>
             
-            {/* {JSON.stringify(houseData)} */}
+            {JSON.stringify(listing)}
             
         </div>
         )
