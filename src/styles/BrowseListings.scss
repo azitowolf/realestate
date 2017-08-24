@@ -3,7 +3,18 @@
     flex-direction: column;
     padding:0px;
 }
-
+.filters {
+    background-color: #2C3239;
+    padding:1em;
+    .Select-control {
+        background-color: #2C3239 !important;  
+        color: white !important;
+        margin-bottom:0.5em;
+    }
+    .Select-placeholder {
+        color: #bbb !important;
+    }    
+}
 .browse-listing-item {
     box-sizing: border-box;
     list-style: none;
@@ -19,7 +30,11 @@
         width: 33%;
     }
     .browse-listing-item-info {
+        color: #9DA1A7;
         width:66%;
         padding-left:1em;
+        h2 {
+            color: #3C4350;
+        }
     }
 }

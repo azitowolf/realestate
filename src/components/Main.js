@@ -24,7 +24,7 @@ class AppComponent extends React.Component {
   render() {
 
     return( 
-      <main>
+      <main className="active-page">
         <Switch>
           <Route exact path='/' component={BrowseListingsComponent}/>
           <Route path='/listing/:id' component={ListingPageComponent}/>

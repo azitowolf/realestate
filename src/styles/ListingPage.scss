@@ -1,0 +1,75 @@
+/* Section Styles */
+
+.primary-info-section{
+    color:white;
+    background-color: #2C3239;
+    padding:2em;
+    div{
+      margin-top:0.5em;
+    }
+    .district,
+    .city {
+        color: #B3BDC2
+    }
+    .rent {
+      margin-top:1.5em;
+      color: #06BEBD;
+      font-size: 1.5em;
+    }
+  }
+  
+  .description-section {
+    margin-bottom: 0px;
+  }
+  
+  .detailed-info-section {
+    display: flex;
+    flex-direction: column;
+    .info-columns {
+      display: flex;
+      flex-direction: row; 
+      .column {
+        margin-right:1em;
+      }  
+    }
+  }
+  
+  .contact-us {
+    background: #D8D8D8;
+    padding: 0px 2em;
+    text-align: center;
+
+    .contact-us-actions {
+        display:flex;
+        flex-direction: row;
+        justify-content: center;
+        margin: 1em;
+    }
+
+    .livwell-logo,
+    .livwell-qr {
+        height: 100px;
+        width: 100px;
+        margin: 1em;
+    }
+
+    .livwell-logo {
+        background-image: url('../images/livwell-logo.png');
+        background-size: cover;
+    } 
+    .livwell-qr {
+        background-image: url('../images/QR.png');
+        background-size: cover;
+    }
+    .contact-us-button {
+        background-color: #06BEBD;
+        padding: 0.25em 0.5em;
+        color:white;
+        border-radius: 5px;
+        display: inline-block;
+    }
+  }  
+  
+  .beds, .baths {
+    display: inline-block;
+  }

@@ -5,8 +5,10 @@ let newLD = listingData.map(listing => {
     listing.rent = parseInt(listing.rent);
     listing.beds = parseInt(listing.beds);
     listing.baths = parseInt(listing.baths);
+    listing.sqm = parseInt(listing.sqm);
+    
     listing.images.forEach(function(url, i){
-        listing.images[i] = url.replace("http://jiazaishanghai.com", "http://jzsh.qianmen.co");
+        listing.images[i] = url.replace("http://jzsh.qianmen.co", "http://jiazaishanghai.com");
     })
     listing.description = listing.description
         .replace(/<\/?[^>]+(>|$)/g, "")

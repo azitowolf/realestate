@@ -19,10 +19,10 @@ export default React.createClass({
         arrows: false,
         adaptiveHeight: true,
         className: "slides",
-        swipe: false,
+        swipe: true,
         nextArrow: rightArrow,
         prevArrow: leftArrow,
-        fade: true
+        fade: false
     };
  
     var style = (imgURL) => ({
