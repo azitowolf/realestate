@@ -60,7 +60,7 @@ module.exports = [
             "year": 2015
         },
         "compound": "西郊美林馆",
-        "floor": "第/3层",
+        "floor": "第1/3层",
         "buildingType": "别墅"
     },
     {
