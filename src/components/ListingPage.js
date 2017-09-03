@@ -6,7 +6,7 @@ import _ from 'underscore';
 import React from 'react';
 import ImageSlider from './Slider';
 
-let listingData = require('./../../listings-1500-1546');
+let listingData = require('./../../listings_0-3000.json');
 
 const ListingPageComponent = (props) => {
         const listingID = parseInt(props.match.params.id);

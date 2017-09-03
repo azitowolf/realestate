@@ -1,19 +1,19 @@
 
 require('styles/BrowseListings.scss');
 
+import $ from 'jQuery';
 import _ from 'underscore';
 import React from 'react';
 import { Link } from 'react-router-dom'
 import Select from 'react-select';
 import 'react-select/dist/react-select.css';
 
-let listingData = require('./../../listings-1500-1546');
-
 class BrowseListingsComponent extends React.Component {
 
   constructor() {
     super();
     this.state = {
+      listings: [],
       beds:"",
       baths:"",
       rentMin: "",
@@ -21,7 +21,29 @@ class BrowseListingsComponent extends React.Component {
       district: ""
     };
     this.onSelect = this.onSelect.bind(this);
-    this.filterListings = this.filterListings.bind(this);
+  }
+
+  loadListingsFromServer() {
+
+    $.ajax({
+      url      : 'http://localhost:3000/api?from=22&to=50',
+      dataType : 'json',
+      type     : 'GET',
+
+      success: data => {
+        console.log(data)
+        this.setState({listings: data});
+        console.log(this.state);
+      },
+
+      error: (xhr, status, err) => {
+        console.error(xhr, status, err.toString());
+      }
+    });
+  }
+
+  componentDidMount() {
+    this.loadListingsFromServer();
   }
 
   onSelect (name, val) {    
@@ -30,19 +52,6 @@ class BrowseListingsComponent extends React.Component {
     }, function() {
       console.log(this.state)
     })
-    
-  }
-
-  filterListings (state) {
-    var filteredListings = _.filter(listingData, function (listing) {
-      return  (state.beds === "" || listing.beds === state.beds) &&
-              (state.baths === "" || listing.baths === state.baths) &&
-              (state.rentMax === "" || listing.rent < state.rentMax) &&
-              (state.rentMin === "" || listing.rent > state.rentMin) &&
-              (state.district === "" || listing.district.match([state.district]))
-    })
-
-    return filteredListings;
   }
 
   render () {
@@ -79,46 +88,46 @@ class BrowseListingsComponent extends React.Component {
 
     return (
       <div>
-      <div className="filters">
-        <Select
-          name="beds"
-          placeholder="Bedrooms"
-          value={this.state.beds}
-          options={bedsOptions}
-          onChange={this.onSelect.bind(this, 'beds')}
-        />
-        <Select
-          name="baths"
-          placeholder="Bathrooms"
-          value={this.state.baths}
-          options={bathsOptions}
-          onChange={this.onSelect.bind(this, 'baths')}
-        />  
-        <Select
-          name="rentMax"
-          placeholder="Rent - Maximum"
-          value={this.state.rentMax}
-          options={rentMaxOptions}
-          onChange={this.onSelect.bind(this, 'rentMax')}
-        /> 
-        <Select
-          name="rentMin"
-          placeholder="Rent- Minimum"
-          value={this.state.rentMin}
-          options={rentMinOptions}
-          onChange={this.onSelect.bind(this, 'rentMin')}
-        />         
-        <Select
-          name="district"
-          placeholder="District"
-          value={this.state.district}
-          options={districtOptions}
-          onChange={this.onSelect.bind(this, 'district')}
-        />                             
-      </div>
+        <div className="filters">
+          <Select
+            name="beds"
+            placeholder="Bedrooms"
+            value={this.state.beds}
+            options={bedsOptions}
+            onChange={this.onSelect.bind(this, 'beds')}
+          />
+          <Select
+            name="baths"
+            placeholder="Bathrooms"
+            value={this.state.baths}
+            options={bathsOptions}
+            onChange={this.onSelect.bind(this, 'baths')}
+          />  
+          <Select
+            name="rentMax"
+            placeholder="Rent - Maximum"
+            value={this.state.rentMax}
+            options={rentMaxOptions}
+            onChange={this.onSelect.bind(this, 'rentMax')}
+          /> 
+          <Select
+            name="rentMin"
+            placeholder="Rent- Minimum"
+            value={this.state.rentMin}
+            options={rentMinOptions}
+            onChange={this.onSelect.bind(this, 'rentMin')}
+          />         
+          <Select
+            name="district"
+            placeholder="District"
+            value={this.state.district}
+            options={districtOptions}
+            onChange={this.onSelect.bind(this, 'district')}
+          />                             
+        </div>
       <ul className="browse-listings-filtered-listings">
         {
-          this.filterListings(this.state)
+          this.state.listings
           .map(listing => { 
             if(listing.address){
               return (          
