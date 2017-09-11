@@ -7,12 +7,14 @@ import React from 'react';
 import { Link } from 'react-router-dom'
 import Select from 'react-select';
 import 'react-select/dist/react-select.css';
+import Loader from '../images/loader.svg';
 
 class BrowseListingsComponent extends React.Component {
 
   constructor() {
     super();
     this.state = {
+      isLoadingListings: false,
       listings: [],
       beds: false,
       baths: false,
@@ -35,7 +37,12 @@ class BrowseListingsComponent extends React.Component {
       dataType : 'json',
       type     : 'GET',
 
+      beforeSend: (url) => {
+        this.setState({isLoadingListings:true});
+      },
+
       success: data => {
+        this.setState({isLoadingListings:false});
         this.setState({listings: data});
         console.log(this.state);
       },
@@ -98,8 +105,14 @@ class BrowseListingsComponent extends React.Component {
     }
 
     return (
-      <div>
-        <div className="filters">     
+      
+      <div>       
+        <div className="livwell-header">
+            <h1>Livwell</h1>
+            <p>find apartments without an agent. speak to landlords directly, 
+              with translation services supplied as needed. find an awesome apartment.</p>
+        </div> 
+        <div className="filters">           
           <Select
             name="beds"
             value={this.state.beds || ""}
@@ -142,30 +155,33 @@ class BrowseListingsComponent extends React.Component {
           />                                   
         </div>
       <ul className="browse-listings-filtered-listings">
+      
         {
-          this.state.listings
-          .map(listing => { 
-            if(listing.address){
-              return (          
-                <li key={listing.id} className="browse-listing-item">
-                  <Link to={`/listing/${listing.id}`} 
-                        className="thumb-image" 
-                        style={{
-                          backgroundImage:'url('+listing.images[0]+')',
-                          backgroundSize:'cover'
-                        }}>
-                  </Link>
-                  <div className="browse-listing-item-info">
-                    <h2>{listing.address}</h2>
-                    <div>¥{listing.rent}/month </div>
-                    <div> {listing.rent} - {listing.rent} - {listing.district} </div>
-                    <div>{listing.images.length} photos</div>
-                    
-                  </div>
-                </li>
-              )
-            }
-          })
+          !this.state.isLoadingListings ?
+            this.state.listings
+            .map(listing => { 
+              if(listing.address){
+                return (          
+                  <li key={listing.id} className="browse-listing-item">
+                    <Link to={`/listing/${listing.id}`} 
+                          className="thumb-image" 
+                          style={{
+                            backgroundImage:'url('+listing.images[0]+')',
+                            backgroundSize:'cover'
+                          }}>
+                    </Link>
+                    <div className="browse-listing-item-info">
+                      <h2>{listing.address}</h2>
+                      <div>¥{listing.rent}/month </div>
+                      <div> {listing.rent} - {listing.rent} - {listing.district} </div>
+                      <div>{listing.images.length} photos</div>
+                      
+                    </div>
+                  </li>
+                )
+              }
+            }) : <img className="listings-loader" src={Loader} />  
+
         }
       </ul>
       {/* {JSON.stringify(this.filterListings(this.state))} */}

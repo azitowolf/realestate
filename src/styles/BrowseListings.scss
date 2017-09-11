@@ -1,3 +1,9 @@
+.livwell-header {
+    padding:1em;    
+    background-color: #2C3239;
+    color:white;
+}
+
 .browse-listings-filtered-listings {
     display: flex;
     flex-direction: column;
@@ -37,4 +43,8 @@
             color: #3C4350;
         }
     }
+}
+
+.listings-loader {
+    margin: 3em auto;
 }
