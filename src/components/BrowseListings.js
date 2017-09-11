@@ -14,24 +14,28 @@ class BrowseListingsComponent extends React.Component {
     super();
     this.state = {
       listings: [],
-      beds:"",
-      baths:"",
-      rentMin: "",
-      rentMax:"",
-      district: ""
+      beds: false,
+      baths: false,
+      rentMin: false,
+      rentMax: false,
+      district: false
     };
     this.onSelect = this.onSelect.bind(this);
   }
 
-  loadListingsFromServer() {
+  loadListingsFromServer(state) {
 
     $.ajax({
-      url      : 'http://localhost:3000/api?from=22&to=50',
+      url      : 'http://localhost:3000/api?limit=10'
+                  + '&beds=' + state.beds
+                  + '&baths=' + state.baths
+                  + '&rentMin=' + state.rentMin
+                  + '&rentMax=' + state.rentMax
+                  + '&district=' + state.district,
       dataType : 'json',
       type     : 'GET',
 
       success: data => {
-        console.log(data)
         this.setState({listings: data});
         console.log(this.state);
       },
@@ -43,7 +47,7 @@ class BrowseListingsComponent extends React.Component {
   }
 
   componentDidMount() {
-    this.loadListingsFromServer();
+    this.loadListingsFromServer(this.state);
   }
 
   onSelect (name, val) {    
@@ -51,79 +55,91 @@ class BrowseListingsComponent extends React.Component {
       [name] : val,      
     }, function() {
       console.log(this.state)
+      this.loadListingsFromServer(this.state)
     })
   }
 
   render () {
-
-    var bedsOptions = [
-      { value: "", label: 'Bedrooms'},
-      { value: 1, label: 'One' },
-      { value: 2, label: 'Two' },
-      { value: 3, label: 'Three' },
-      { value: 4, label: 'Four' }
-    ],
-    bathsOptions = [
-      { value: "", label: 'Bathrooms'},
-      { value: 1, label: 'One' },
-      { value: 2, label: 'Two' },
-      { value: 3, label: 'Three' },
-      { value: 4, label: 'Four' }
-    ],
-    rentMaxOptions = [
-      { value: "", label: 'Rent Price - Maximum' },
-      { value: 10000, label: '10,000' },
-      { value: 20000, label: '20,000' }
-    ],
-    rentMinOptions = [
-      { value: "", label: 'Rent Price - Minimum' },
-      { value: 10000, label: '10,000' },
-      { value: 20000, label: '20,000' }
-    ],    
-    districtOptions = [
-      { value: "", label: 'District'},
-      { value: '静安', label: '静安区' },
-      { value: '普陀', label: '普陀区' }
-    ];
+    var optionsSets = {
+      bedsOptions: [
+        { value: 1, label: 'One' },
+        { value: 2, label: 'Two' },
+        { value: 3, label: 'Three' },
+        { value: 4, label: 'Four' }
+      ],
+      bathsOptions: [
+        { value: false, label: 'Bathrooms'},
+        { value: 1, label: 'One' },
+        { value: 2, label: 'Two' },
+        { value: 3, label: 'Three' },
+        { value: 4, label: 'Four' }
+      ],
+      rentMaxOptions: [
+        { value: false, label: 'Rent Price - Maximum' },
+        { value: 10000, label: '10,000' },
+        { value: 20000, label: '20,000' }
+      ],
+      rentMinOptions: [
+        { value: false, label: 'Rent Price - Minimum' },
+        { value: 10000, label: '10,000' },
+        { value: 20000, label: '20,000' }
+      ],    
+      districtOptions: [
+        { value: false, label: 'District'},
+        { value: '静安', label: '静安区' },
+        { value: '普陀', label: '普陀区' }
+      ]
+    }
+    var allFiltersValue = [];
+    for(var filter in this.state) {
+      if(this.state[filter] && filter !== 'listings') {
+        allFiltersValue.push(this.state[filter])
+      }
+    }
 
     return (
       <div>
-        <div className="filters">
+        <div className="filters">     
           <Select
             name="beds"
+            value={this.state.beds || ""}
+            options={optionsSets.bedsOptions}
             placeholder="Bedrooms"
-            value={this.state.beds}
-            options={bedsOptions}
             onChange={this.onSelect.bind(this, 'beds')}
-          />
+          />               
           <Select
             name="baths"
             placeholder="Bathrooms"
-            value={this.state.baths}
-            options={bathsOptions}
+            value={this.state.baths || ""}
+            options={optionsSets.bathsOptions}
             onChange={this.onSelect.bind(this, 'baths')}
           />  
           <Select
             name="rentMax"
             placeholder="Rent - Maximum"
-            value={this.state.rentMax}
-            options={rentMaxOptions}
+            value={this.state.rentMax || ""}
+            options={optionsSets.rentMaxOptions}
             onChange={this.onSelect.bind(this, 'rentMax')}
           /> 
           <Select
             name="rentMin"
             placeholder="Rent- Minimum"
-            value={this.state.rentMin}
-            options={rentMinOptions}
+            value={this.state.rentMin || ""}
+            options={optionsSets.rentMinOptions}
             onChange={this.onSelect.bind(this, 'rentMin')}
           />         
           <Select
             name="district"
             placeholder="District"
-            value={this.state.district}
-            options={districtOptions}
+            value={this.state.district || ""}
+            options={optionsSets.districtOptions}
             onChange={this.onSelect.bind(this, 'district')}
-          />                             
+          />       
+          <Select
+            name="AllFilters"
+            value={allFiltersValue}
+            multi={true}
+          />                                   
         </div>
       <ul className="browse-listings-filtered-listings">
         {
@@ -132,9 +148,11 @@ class BrowseListingsComponent extends React.Component {
             if(listing.address){
               return (          
                 <li key={listing.id} className="browse-listing-item">
-                  <Link to={`/listing/${listing.id}`} className="thumb-image" style={{
-                        backgroundImage:'url('+listing.images[0]+')',
-                        backgroundSize:'cover'
+                  <Link to={`/listing/${listing.id}`} 
+                        className="thumb-image" 
+                        style={{
+                          backgroundImage:'url('+listing.images[0]+')',
+                          backgroundSize:'cover'
                         }}>
                   </Link>
                   <div className="browse-listing-item-info">
