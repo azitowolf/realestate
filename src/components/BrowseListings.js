@@ -57,9 +57,16 @@ class BrowseListingsComponent extends React.Component {
     this.loadListingsFromServer(this.state);
   }
 
-  onSelect (name, val) {    
+  stopPropagation(e) {
+    console.log("stopping propa")
+    e.stopPropagation();
+  }
+
+  onSelect (name, val) {  
+    var newState;
+    val === "" ? newState = false : newState = val;  
     this.setState({
-      [name] : val,      
+      [name] : newState,      
     }, function() {
       console.log(this.state)
       this.loadListingsFromServer(this.state)
@@ -99,57 +106,69 @@ class BrowseListingsComponent extends React.Component {
     }
     var allFiltersValue = [];
     for(var filter in this.state) {
-      if(this.state[filter] && filter !== 'listings') {
+      if(this.state[filter] 
+        && filter !== 'listings'
+        && filter !== 'isLoadingListings') {
         allFiltersValue.push(this.state[filter])
       }
     }
 
     return (
       
-      <div>       
+      <div className="page-browse-listings">       
         <div className="livwell-header">
             <h1>Livwell</h1>
-            <p>find apartments without an agent. speak to landlords directly, 
-              with translation services supplied as needed. find an awesome apartment.</p>
+            <p>find apartments without an agent.
+              agent service/translation only if you need it. <b>find an awesome place to live.</b></p>
         </div> 
-        <div className="filters">           
-          <Select
-            name="beds"
-            value={this.state.beds || ""}
-            options={optionsSets.bedsOptions}
-            placeholder="Bedrooms"
-            onChange={this.onSelect.bind(this, 'beds')}
-          />               
-          <Select
-            name="baths"
-            placeholder="Bathrooms"
-            value={this.state.baths || ""}
-            options={optionsSets.bathsOptions}
-            onChange={this.onSelect.bind(this, 'baths')}
-          />  
-          <Select
-            name="rentMax"
-            placeholder="Rent - Maximum"
-            value={this.state.rentMax || ""}
-            options={optionsSets.rentMaxOptions}
-            onChange={this.onSelect.bind(this, 'rentMax')}
-          /> 
-          <Select
-            name="rentMin"
-            placeholder="Rent- Minimum"
-            value={this.state.rentMin || ""}
-            options={optionsSets.rentMinOptions}
-            onChange={this.onSelect.bind(this, 'rentMin')}
-          />         
-          <Select
-            name="district"
-            placeholder="District"
-            value={this.state.district || ""}
-            options={optionsSets.districtOptions}
-            onChange={this.onSelect.bind(this, 'district')}
-          />       
+        <div className="livwell-subheader">
+          <input type="text" placeholder="search by street, compound, etc."></input> 
+        </div>
+        <div className="filters">   
+          <div className="flex-row flex-row-basics">
+            <Select
+              name="beds"
+              value={this.state.beds || ""}
+              options={optionsSets.bedsOptions}
+              placeholder="Bedrooms"
+              onChange={this.onSelect.bind(this, 'beds')}
+            />               
+            <Select
+              name="baths"
+              placeholder="Bathrooms"
+              value={this.state.baths || ""}
+              options={optionsSets.bathsOptions}
+              onChange={this.onSelect.bind(this, 'baths')}
+            />  
+            <Select
+              name="district"
+              placeholder="District"
+              value={this.state.district || ""}
+              options={optionsSets.districtOptions}
+              onChange={this.onSelect.bind(this, 'district')}
+            />     
+          </div>
+          <div className="flex-row flex-row-rent">
+            <Select
+              name="rentMax"
+              placeholder="Rent - Maximum"
+              value={this.state.rentMax || ""}
+              options={optionsSets.rentMaxOptions}
+              onChange={this.onSelect.bind(this, 'rentMax')}
+            /> 
+            <Select
+              name="rentMin"
+              placeholder="Rent- Minimum"
+              value={this.state.rentMin || ""}
+              options={optionsSets.rentMinOptions}
+              onChange={this.onSelect.bind(this, 'rentMin')}
+            />      
+          </div>          
+  
           <Select
             name="AllFilters"
+            className="all-filters"
+            placeholder=""
             value={allFiltersValue}
             multi={true}
           />                                   
