@@ -16,6 +16,8 @@ class BrowseListingsComponent extends React.Component {
     this.state = {
       isLoadingListings: false,
       listings: [],
+      textInputVal:'',
+      textSearch: '',
       beds: false,
       baths: false,
       rentMin: false,
@@ -54,12 +56,24 @@ class BrowseListingsComponent extends React.Component {
   }
 
   componentDidMount() {
+    const that = this;    
     this.loadListingsFromServer(this.state);
+    document.addEventListener("keyup", function(event){
+      if(event.key === "Enter") {
+        that.setState({textSearch: that.state.textInputVal})
+        console.log(that.state)
+      }
+      
+    })
   }
 
   stopPropagation(e) {
     console.log("stopping propa")
     e.stopPropagation();
+  }
+
+  onTextInputChange(e) {
+    this.setState({textInputVal: e.target.value})
   }
 
   onSelect (name, val) {  
@@ -82,34 +96,48 @@ class BrowseListingsComponent extends React.Component {
         { value: 4, label: 'Four' }
       ],
       bathsOptions: [
-        { value: false, label: 'Bathrooms'},
         { value: 1, label: 'One' },
         { value: 2, label: 'Two' },
         { value: 3, label: 'Three' },
         { value: 4, label: 'Four' }
       ],
       rentMaxOptions: [
-        { value: false, label: 'Rent Price - Maximum' },
         { value: 10000, label: '10,000' },
         { value: 20000, label: '20,000' }
       ],
       rentMinOptions: [
-        { value: false, label: 'Rent Price - Minimum' },
         { value: 10000, label: '10,000' },
         { value: 20000, label: '20,000' }
       ],    
       districtOptions: [
-        { value: false, label: 'District'},
         { value: '静安', label: '静安区' },
         { value: '普陀', label: '普陀区' }
       ]
     }
     var allFiltersValue = [];
     for(var filter in this.state) {
-      if(this.state[filter] 
-        && filter !== 'listings'
-        && filter !== 'isLoadingListings') {
-        allFiltersValue.push(this.state[filter])
+      if(this.state[filter] && filter !== 'listings' && filter !== 'isLoadingListings' && filter !== 'textInputVal' ) {
+        switch (filter) {
+          case 'beds':
+            allFiltersValue.push(this.state[filter] + " " + filter)
+          break;
+          case 'baths':
+            allFiltersValue.push(this.state[filter] + " " + filter)
+          break;                  
+          case 'rentMin':
+            allFiltersValue.push("¥" + this.state[filter] + " rent minimum")
+          break;   
+          case 'rentMax':
+            allFiltersValue.push( "¥" + this.state[filter] + " rent maximum")
+          break;  
+          case 'district':
+            allFiltersValue.push(this.state[filter] + " " + filter)
+          break;                              
+
+          default:
+            allFiltersValue.push(this.state[filter]) 
+        }
+             
       }
     }
 
@@ -122,7 +150,7 @@ class BrowseListingsComponent extends React.Component {
               agent service/translation only if you need it. <b>find an awesome place to live.</b></p>
         </div> 
         <div className="livwell-subheader">
-          <input type="text" placeholder="search by street, compound, etc."></input> 
+          <input onChange={this.onTextInputChange.bind(this)} id="search-apartments" type="text" placeholder="search by street, compound, etc."></input> 
         </div>
         <div className="filters">   
           <div className="flex-row flex-row-basics">
