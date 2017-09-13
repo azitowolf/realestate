@@ -171,6 +171,8 @@ class BrowseListingsComponent extends React.Component {
             placeholder=""
             value={allFiltersValue}
             multi={true}
+            onInputKeyDown={this.stopPropagation}
+            onFocus={this.stopPropagation}
           />                                   
         </div>
       <ul className="browse-listings-filtered-listings">
@@ -190,7 +192,7 @@ class BrowseListingsComponent extends React.Component {
                           }}>
                     </Link>
                     <div className="browse-listing-item-info">
-                      <h2>{listing.address}</h2>
+                      <h2>{listing.address_en}</h2>
                       <div>¥{listing.rent}/month </div>
                       <div> {listing.rent} - {listing.rent} - {listing.district} </div>
                       <div>{listing.images.length} photos</div>
