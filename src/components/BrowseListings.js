@@ -58,6 +58,8 @@ class BrowseListingsComponent extends React.Component {
   componentDidMount() {
     const that = this;    
     this.loadListingsFromServer(this.state);
+
+    // todo: make this not bound like this
     document.addEventListener("keyup", function(event){
       if(event.key === "Enter") {
         that.setState({textSearch: that.state.textInputVal})
@@ -76,8 +78,10 @@ class BrowseListingsComponent extends React.Component {
     this.setState({textInputVal: e.target.value})
   }
 
-  onSelect (name, val) {  
+  onSelect (name, val, event) {  
     var newState;
+
+    // because react-select default value is an empty string
     val === "" ? newState = false : newState = val;  
     this.setState({
       [name] : newState,      
@@ -86,6 +90,13 @@ class BrowseListingsComponent extends React.Component {
       this.loadListingsFromServer(this.state)
     })
   }
+
+  // removeFilter (event) {
+  //   console.log(event)
+  //   this.setState({
+  //     beds : false
+  //   }, function () {console.log(this.state)})
+  // }
 
   render () {
     var optionsSets = {
@@ -119,7 +130,12 @@ class BrowseListingsComponent extends React.Component {
       if(this.state[filter] && filter !== 'listings' && filter !== 'isLoadingListings' && filter !== 'textInputVal' ) {
         switch (filter) {
           case 'beds':
-            allFiltersValue.push(this.state[filter] + " " + filter)
+            allFiltersValue.push({
+              value: 'beds',
+              label: this.state[filter] + " " + filter
+            }
+              
+            )
           break;
           case 'baths':
             allFiltersValue.push(this.state[filter] + " " + filter)
@@ -199,8 +215,8 @@ class BrowseListingsComponent extends React.Component {
             placeholder=""
             value={allFiltersValue}
             multi={true}
-            onInputKeyDown={this.stopPropagation}
-            onFocus={this.stopPropagation}
+            allowCreate={false}
+            clearable={false}
           />                                   
         </div>
       <ul className="browse-listings-filtered-listings">

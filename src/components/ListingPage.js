@@ -58,21 +58,16 @@ class ListingPageComponent extends React.Component {
                     </div>
         
                     <div className="section primary-info-section">
-                        <h1 className="address">{listing.address}</h1> 
-                        <h1 className="address">{listing.address_en}</h1>    
-                        <div className="district">{listing.district}</div> 
-                        <div className="district">{listing.district_en}</div> 
-                        <div className="city">{listing.city}</div>  
-                        <div className="city">{listing.city_en}</div>  
-                        <div className="bed-bath-sqm">{listing.beds} 室- {listing.baths} 卫- {listing.sqm} sqm</div> 
-                        <div className="bed-bath-sqm">{listing.beds} beds- {listing.baths} baths- {listing.sqm} sqm</div> 
+                        <h2 className="address">{listing.address_en} ({listing.address})</h2>    
+                        <div className="district">{listing.district_en} ({listing.district})</div> 
+                        <div className="city">{listing.city_en} ({listing.city})</div>  
+                        <div className="bed-bath-sqm">{listing.beds} beds (室) - {listing.baths} baths (卫) - {listing.sqm} sqm</div> 
                         <div className="rent">¥{listing.rent}/month</div>           
                     </div>
         
                     <div className="section description-section">
                         <h2 className="info-header">Description/形容:</h2>
-                        <div className="description">{listing.description}</div>
-                        <div className="description">{listing.description_en}</div>
+                        <div className="description">{listing.description_en} <br/><br/> ({listing.description})</div>
                     </div>
         
                     <div className="section detailed-info-section">
@@ -81,11 +76,11 @@ class ListingPageComponent extends React.Component {
                             <div className="column column-left">
                                 price: {listing.rent} <br />
                                 rooms: {listing.rent} <br />
-                                area: {listing.district} <br />
+                                area: {listing.district_en} <br />
                             </div>
         
                             <div className="column column-right">
-                                size: {listing.sqm} <br />
+                                size: {listing.sqm} sqm<br />
                                 beds: {listing.beds} <br />
                                 baths {listing.baths}
                             </div>   
