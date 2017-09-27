@@ -8,6 +8,9 @@ import { Link } from 'react-router-dom'
 import Select from 'react-select';
 import 'react-select/dist/react-select.css';
 import Loader from '../images/loader.svg';
+import config from 'config';
+
+console.log(config);
 
 class BrowseListingsComponent extends React.Component {
 
@@ -30,7 +33,8 @@ class BrowseListingsComponent extends React.Component {
   loadListingsFromServer(state) {
 
     $.ajax({
-      url      : __dirname + 'api?limit=10'
+      url      : config.apiURL + 'api?limit=10'
+                  + '&textSearch=' + state.textSearch
                   + '&beds=' + state.beds
                   + '&baths=' + state.baths
                   + '&rentMin=' + state.rentMin
@@ -70,7 +74,7 @@ class BrowseListingsComponent extends React.Component {
   }
 
   stopPropagation(e) {
-    console.log("stopping propa")
+    console.log("stopping prop")
     e.stopPropagation();
   }
 
@@ -78,7 +82,7 @@ class BrowseListingsComponent extends React.Component {
     this.setState({textInputVal: e.target.value})
   }
 
-  onSelect (name, val, event) {  
+  onSelect (name, val) {  
     var newState;
 
     // because react-select default value is an empty string
@@ -90,13 +94,6 @@ class BrowseListingsComponent extends React.Component {
       this.loadListingsFromServer(this.state)
     })
   }
-
-  // removeFilter (event) {
-  //   console.log(event)
-  //   this.setState({
-  //     beds : false
-  //   }, function () {console.log(this.state)})
-  // }
 
   render () {
     var optionsSets = {

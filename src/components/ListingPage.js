@@ -6,8 +6,7 @@ import $ from 'jQuery';
 import _ from 'underscore';
 import React from 'react';
 import ImageSlider from './Slider';
-
-console.log("loaded")
+import config from 'config';
 
 class ListingPageComponent extends React.Component {
         
@@ -23,7 +22,7 @@ class ListingPageComponent extends React.Component {
         const listingID = parseInt(id);
         console.log(id)
         $.ajax({
-            url      : __dirname + 'api/listing/' + listingID,
+            url      : config.apiURL + 'api/listing/' + listingID,
             dataType : 'json',
             type     : 'GET',
     
