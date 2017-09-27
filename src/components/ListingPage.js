@@ -23,7 +23,7 @@ class ListingPageComponent extends React.Component {
         const listingID = parseInt(id);
         console.log(id)
         $.ajax({
-            url      : 'http://localhost:3000/api/listing/' + listingID,
+            url      : __dirname + 'api/listing/' + listingID,
             dataType : 'json',
             type     : 'GET',
     

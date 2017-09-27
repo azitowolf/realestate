@@ -30,7 +30,7 @@ class BrowseListingsComponent extends React.Component {
   loadListingsFromServer(state) {
 
     $.ajax({
-      url      : 'http://localhost:3000/api?limit=10'
+      url      : __dirname + 'api?limit=10'
                   + '&beds=' + state.beds
                   + '&baths=' + state.baths
                   + '&rentMin=' + state.rentMin
