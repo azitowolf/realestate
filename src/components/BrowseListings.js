@@ -19,8 +19,8 @@ class BrowseListingsComponent extends React.Component {
     this.state = {
       isLoadingListings: false,
       listings: [],
-      textInputVal:'',
-      textSearch: '',
+      textInputVal: false,
+      textSearch: false,
       beds: false,
       baths: false,
       rentMin: false,
@@ -33,7 +33,8 @@ class BrowseListingsComponent extends React.Component {
   loadListingsFromServer(state) {
 
     $.ajax({
-      url      : config.apiURL + 'api?limit=10'
+      url      : config.apiURL + 'api?'
+                  + 'limit=10'
                   + '&textSearch=' + state.textSearch
                   + '&beds=' + state.beds
                   + '&baths=' + state.baths
@@ -68,8 +69,8 @@ class BrowseListingsComponent extends React.Component {
       if(event.key === "Enter") {
         that.setState({textSearch: that.state.textInputVal})
         console.log(that.state)
-      }
-      
+        that.loadListingsFromServer(that.state);
+      }      
     })
   }
 
@@ -91,7 +92,7 @@ class BrowseListingsComponent extends React.Component {
       [name] : newState,      
     }, function() {
       console.log(this.state)
-      this.loadListingsFromServer(this.state)
+      this.loadListingsFromServer(this.state);
     })
   }
 
@@ -163,7 +164,12 @@ class BrowseListingsComponent extends React.Component {
               agent service/translation only if you need it. <b>find an awesome place to live.</b></p>
         </div> 
         <div className="livwell-subheader">
-          <input onChange={this.onTextInputChange.bind(this)} id="search-apartments" type="text" placeholder="search by street, compound, etc."></input> 
+          <input 
+              onChange={this.onTextInputChange.bind(this)} 
+              id="search-apartments" 
+              type="text" 
+              placeholder="search by street, compound, etc.">
+          </input> 
         </div>
         <div className="filters">   
           <div className="flex-row flex-row-basics">
