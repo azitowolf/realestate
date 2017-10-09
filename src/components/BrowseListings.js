@@ -19,7 +19,7 @@ class BrowseListingsComponent extends React.Component {
     this.state = {
       isLoadingListings: false,
       listings: [],
-      textInputVal: false,
+      textInputVal: '',
       textSearch: false,
       beds: false,
       baths: false,
