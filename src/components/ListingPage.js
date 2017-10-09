@@ -58,6 +58,7 @@ class ListingPageComponent extends React.Component {
         
                     <div className="section primary-info-section">
                         <h2 className="address">{listing.address_en} ({listing.address})</h2>    
+                        <div className="availability"> Availability: {listing.isAvailable.toString()}</div>
                         <div className="district">{listing.district_en} ({listing.district})</div> 
                         <div className="city">{listing.city_en} ({listing.city})</div>  
                         <div className="bed-bath-sqm">{listing.beds} beds (室) - {listing.baths} baths (卫) - {listing.sqm} sqm</div> 
