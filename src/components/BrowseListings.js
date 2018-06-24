@@ -234,7 +234,7 @@ class BrowseListingsComponent extends React.Component {
                     <Link to={`/listing/${listing.id}`} 
                           className="thumb-image" 
                           style={{
-                            backgroundImage:'url('+listing.images[0]+')',
+                            backgroundImage:'url(../images/img-placeholder.png)',
                             backgroundSize:'cover'
                           }}>
                     </Link>

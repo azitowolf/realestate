@@ -53,7 +53,7 @@ class ListingPageComponent extends React.Component {
                     <div className="content-wrapper">
         
                     <div className="image-section">
-                        <ImageSlider className="image-slider" images={listing.images} />
+                        <ImageSlider className="image-slider" images={["../images/img-placeholder.png","../images/img-placeholder.png","../images/img-placeholder.png", "../images/img-placeholder.png"] } />
                     </div>
         
                     <div className="section primary-info-section">
