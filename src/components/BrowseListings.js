@@ -41,7 +41,7 @@ class BrowseListingsComponent extends React.Component {
       dataType : 'json',
       type     : 'GET',
 
-      beforeSend: (url) => {
+      beforeSend: () => {
         this.setState({isLoadingListings:true});
       },
 

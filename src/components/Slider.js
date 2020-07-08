@@ -4,7 +4,7 @@ import SliderArrow from './SliderArrowComponent';
 
 require('styles/Slider.scss');
  
-export default React.createClass({   
+export default React.createClass({
   render() {
     const images = this.props.images;
     var rightArrow = <SliderArrow direction="right" />;
@@ -18,7 +18,7 @@ export default React.createClass({
         slidesToScroll: 1,
         arrows: false,
         adaptiveHeight: true,
-        className: "slides",
+        className: 'slides',
         swipe: true,
         nextArrow: rightArrow,
         prevArrow: leftArrow,
