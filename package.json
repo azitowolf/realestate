@@ -62,6 +62,6 @@
     "react-router-dom": "^4.3.1",
     "react-select": "^0.9.1",
     "react-slick": "^0.14.11",
-    "underscore": "^1.10.2"
+    "underscore": "^1.12.1"
   }
 }
